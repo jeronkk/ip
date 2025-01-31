@@ -1,6 +1,9 @@
 import java.util.Scanner;
 
 public class LebronJames {
+    private static final String LINE = "____________________________________________\n";
+    private static final int MAX_TASKS = 100;
+
     public static void main(String[] args) {
         String asciiArt = """
                                                             @@@@@@@@@@@@                                           \s
@@ -47,22 +50,21 @@ public class LebronJames {
                 ███████╗███████╗██████╔╝██║  ██║╚██████╔╝██║ ╚████║    ╚█████╔╝██║  ██║██║ ╚═╝ ██║███████╗███████║
                 ╚══════╝╚══════╝╚═════╝ ╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═══╝     ╚════╝ ╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝╚══════╝
                 """;
-        String line = "____________________________________________________________";
         System.out.println(asciiArt + asciiText);
-        System.out.println(line + "\n> Hello! I'm Lebron James.\n> What can I do for you?\n" + line);
+        System.out.println(LINE + "\n> Hello! I'm Lebron James.\n> What can I do for you?\n" + LINE);
 
         Scanner scanner = new Scanner(System.in);
         String input;
-        String[] tasks = new String[100];
+        Task[] tasks = new Task[MAX_TASKS];
         int taskCount = 0;
 
         while (true) {
             input = scanner.nextLine();
             if (input.equals("bye")) {
-                System.out.println(line + "\n> Bye. Hope to see you again soon!\n" + line);
+                System.out.println(LINE + "\n> Bye. Hope to see you again soon!\n" + LINE);
                 break;
             } else if (input.equals("list")) {
-                System.out.println(line);
+                System.out.println(LINE);
                 if (taskCount == 0) {
                     System.out.println("No tasks added yet.");
                 } else {
@@ -70,14 +72,14 @@ public class LebronJames {
                         System.out.println((i + 1) + ". " + tasks[i]);
                     }
                 }
-                System.out.println(line);
+                System.out.println(LINE);
             } else {
-                if (taskCount < 100) {
-                    tasks[taskCount] = input;
+                if (taskCount < MAX_TASKS) {
+                    tasks[taskCount] = new Task(input);
                     taskCount++;
-                    System.out.println(line + "\nadded: " + input + "\n" + line);
+                    System.out.println(LINE + "\nadded: " + input + "\n" + LINE);
                 } else {
-                    System.out.println(line + "\nTask limit reached! Cannot add more tasks.\n" + line);
+                    System.out.println(LINE + "\nTask limit reached! Cannot add more tasks.\n" + LINE);
                 }
             }
         }
