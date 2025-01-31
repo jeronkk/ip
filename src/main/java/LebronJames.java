@@ -54,11 +54,11 @@ public class LebronJames {
                 ╚══════╝╚══════╝╚═════╝ ╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═══╝     ╚════╝ ╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝╚══════╝
                 """;
         System.out.println(asciiArt + asciiText);
-        System.out.println(LINE + "\n> Hello! I'm Lebron James.\n> What can I do for you?\n" + LINE);
+        System.out.println(LINE + "\nHello! I'm Lebron James.\nWhat can I do for you?\n" + LINE);
     }
 
     public static void printExitMessage() {
-        System.out.println(LINE + "\n> Bye. Hope to see you again soon!\n" + LINE);
+        System.out.println(LINE + "\nBye. Hope to see you again soon!\n" + LINE);
     }
 
     public static void printTaskList() {
