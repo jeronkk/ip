@@ -41,8 +41,13 @@ public class LebronJames {
                         + "██║     ██╔══╝  ██╔══██╗██╔══██╗██║   ██║██║╚██╗██║    ██   ██║██╔══██║██║╚██╔╝██║██╔══╝  ╚════██║\n"
                         + "███████╗███████╗██████╔╝██║  ██║╚██████╔╝██║ ╚████║    ╚█████╔╝██║  ██║██║ ╚═╝ ██║███████╗███████║\n"
                         + "╚══════╝╚══════╝╚═════╝ ╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═══╝     ╚════╝ ╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝╚══════╝\n";
-
-
-        System.out.println("Hello from\n" + asciiArt + asciiText);
+        String line = "____________________________________________________________";
+        System.out.println(asciiArt + asciiText);
+        System.out.println(line);
+        System.out.println("Hello! I'm Lebron James.");
+        System.out.println("What can I do for you?");
+        System.out.println(line);
+        System.out.println("Bye. Hope to see you again soon!");
+        System.out.println(line);
     }
 }
