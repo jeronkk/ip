@@ -19,8 +19,10 @@ fi
 # Run the program, feed commands from input.txt file and redirect the output to ACTUAL.TXT
 java -classpath ../bin LebronJames < input.txt > ACTUAL.TXT
 
-# Compare the output to the expected output
-diff ACTUAL.TXT EXPECTED.TXT
+dos2unix ACTUAL.TXT
+
+# Compare the output to the expected output (EXPECTED-UNIX.TXT)
+diff -w ACTUAL.TXT EXPECTED-UNIX.TXT
 if [ $? -eq 0 ]; then
     echo "Test result: PASSED"
     exit 0
