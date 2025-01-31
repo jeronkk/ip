@@ -52,6 +52,7 @@ public class LebronJames {
 
         Scanner scanner = new Scanner(System.in);
         String input;
+        int taskCount = 0;
 
         while (true) {
             input = scanner.nextLine();
@@ -60,6 +61,16 @@ public class LebronJames {
                 System.out.println("> Bye. Hope to see you again soon!");
                 System.out.println(line);
                 break;
+            } else if (input.equals("list")) {
+                System.out.println(line);
+                if (taskCount == 0) {
+                    System.out.println("No tasks added yet.");
+                } else {
+                    for (int i = 0; i < taskCount; i++) {
+                        System.out.println((i + 1) + ". " + tasks[i]);
+                    }
+                }
+                System.out.println(line);
             }
             System.out.println(line);
             System.out.println("> " + input);
