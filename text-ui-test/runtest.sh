@@ -17,7 +17,7 @@ if ! javac -cp ../src/main/java -Xlint:none -d ../bin ../src/main/java/*.java; t
 fi
 
 # Run the program, feed commands from input.txt file and redirect the output to ACTUAL.TXT
-java -classpath ../bin LebronJames < input.txt > ACTUAL.TXT
+java -classpath ../bin LeChatBot < input.txt > ACTUAL.TXT
 
 dos2unix ACTUAL.TXT
 

@@ -1,7 +1,7 @@
 import java.util.Scanner;
 import java.util.ArrayList;
 
-public class LebronJames {
+public class LeChatBot {
     private static final String LINE = "____________________________________________";
     private static final int MAX_TASKS = 100;
     private static ArrayList<Task> tasks = new ArrayList<>();
@@ -74,29 +74,29 @@ public class LebronJames {
         System.out.print(LINE+ "\n");
     }
 
-    public static void handleMarkTask(String input) throws LebronJamesException {
+    public static void handleMarkTask(String input) throws LeChatBotException {
         try {
             int taskIndex = Integer.parseInt(input.substring(5)) - 1;
             if (taskIndex < 0 || taskIndex >= tasks.size()) {
-                throw LebronJamesException.invalidTaskNumber();
+                throw LeChatBotException.invalidTaskNumber();
             }
             tasks.get(taskIndex).markAsDone();
             System.out.println(LINE + "\nNice! I've marked this task as done:\n  " + tasks.get(taskIndex) + "\n" + LINE);
         } catch (NumberFormatException e) {
-            throw LebronJamesException.invalidCommand();
+            throw LeChatBotException.invalidCommand();
         }
     }
 
-    public static void handleUnmarkTask(String input) throws LebronJamesException {
+    public static void handleUnmarkTask(String input) throws LeChatBotException {
         try {
             int taskIndex = Integer.parseInt(input.substring(7)) - 1;
             if (taskIndex < 0 || taskIndex >= tasks.size()) {
-                throw LebronJamesException.invalidTaskNumber();
+                throw LeChatBotException.invalidTaskNumber();
             }
             tasks.get(taskIndex).markAsNotDone();
             System.out.println(LINE + "\nOK, I've marked this task as not done yet:\n  " + tasks.get(taskIndex) + "\n" + LINE);
         } catch (NumberFormatException e) {
-            throw LebronJamesException.invalidCommand();
+            throw LeChatBotException.invalidCommand();
         }
     }
 
@@ -105,53 +105,53 @@ public class LebronJames {
                 "\nNow you have " + tasks.size() + " tasks in the list.\n" + LINE);
     }
 
-    public static void handleTodoTask(String input) throws LebronJamesException {
+    public static void handleTodoTask(String input) throws LeChatBotException {
         if (input.trim().equals("todo")) {
-            throw LebronJamesException.emptyTaskDescription();
+            throw LeChatBotException.emptyTaskDescription();
         }
         if (tasks.size() >= MAX_TASKS) {
-            throw LebronJamesException.taskListFull();
+            throw LeChatBotException.taskListFull();
         }
         tasks.add(new Todo(input.substring(5)));
         printTaskAddedMessage(tasks.get(tasks.size() - 1));
     }
 
-    public static void handleDeadlineTask(String input) throws LebronJamesException {
+    public static void handleDeadlineTask(String input) throws LeChatBotException {
         if (tasks.size() >= MAX_TASKS) {
-            throw LebronJamesException.taskListFull();
+            throw LeChatBotException.taskListFull();
         }
         String[] parts = input.substring(9).split(" /by ", 2);
         if (parts.length != 2) {
-            throw LebronJamesException.invalidCommand();
+            throw LeChatBotException.invalidCommand();
         }
         tasks.add(new Deadline(parts[0], parts[1]));
         printTaskAddedMessage(tasks.get(tasks.size() - 1));
     }
 
-    public static void handleEventTask(String input) throws LebronJamesException {
+    public static void handleEventTask(String input) throws LeChatBotException {
         if (tasks.size() >= MAX_TASKS) {
-            throw LebronJamesException.taskListFull();
+            throw LeChatBotException.taskListFull();
         }
         String[] parts = input.substring(6).split(" /from | /to ", 3);
         if (parts.length != 3) {
-            throw LebronJamesException.invalidCommand();
+            throw LeChatBotException.invalidCommand();
         }
         tasks.add(new Event(parts[0], parts[1], parts[2]));
         printTaskAddedMessage(tasks.get(tasks.size() - 1));
     }
 
-    public static void handleDeleteTask(String input) throws LebronJamesException {
+    public static void handleDeleteTask(String input) throws LeChatBotException {
         try {
             int taskIndex = Integer.parseInt(input.substring(7)) - 1;
             if (taskIndex < 0 || taskIndex >= tasks.size()) {
-                throw LebronJamesException.invalidTaskNumber();
+                throw LeChatBotException.invalidTaskNumber();
             }
 
             Task removedTask = tasks.remove(taskIndex);
             System.out.println(LINE + "\nNoted. I've removed this task:\n  " + removedTask +
                     "\nNow you have " + tasks.size() + " tasks in the list.\n" + LINE);
         } catch (NumberFormatException e) {
-            throw LebronJamesException.invalidCommand();
+            throw LeChatBotException.invalidCommand();
         }
     }
 
@@ -178,9 +178,9 @@ public class LebronJames {
                 } else if (input.startsWith("delete ")) {
                     handleDeleteTask(input);
                 } else {
-                    throw LebronJamesException.invalidCommand();
+                    throw LeChatBotException.invalidCommand();
                 }
-            } catch (LebronJamesException e) {
+            } catch (LeChatBotException e) {
                 System.out.println(LINE + "\n" + e.getMessage() + "\n" + LINE);
             }
         }
