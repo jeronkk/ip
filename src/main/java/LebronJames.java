@@ -140,6 +140,19 @@ public class LebronJames {
         printTaskAddedMessage(tasks.get(tasks.size() - 1));
     }
 
+    public static void handleDeleteTask(String input) throws LebronJamesException {
+        try {
+            int taskIndex = Integer.parseInt(input.substring(7)) - 1;
+            if (taskIndex < 0 || taskIndex >= tasks.size()) {
+                throw LebronJamesException.invalidTaskNumber();
+            }
+
+            Task removedTask = tasks.remove(taskIndex);
+            System.out.println(LINE + "\nNoted. I've removed this task:\n  " + removedTask +
+                    "\nNow you have " + tasks.size() + " tasks in the list.\n" + LINE);
+        } catch (NumberFormatException e) {
+            throw LebronJamesException.invalidCommand();
+        }
     }
 
     public static void main(String[] args) {
@@ -162,6 +175,8 @@ public class LebronJames {
                     handleDeadlineTask(input);
                 } else if (input.startsWith("event ")) {
                     handleEventTask(input);
+                } else if (input.startsWith("delete ")) {
+                    handleDeleteTask(input);
                 } else {
                     throw LebronJamesException.invalidCommand();
                 }
