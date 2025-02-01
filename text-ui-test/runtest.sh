@@ -21,8 +21,8 @@ java -classpath ../bin LebronJames < input.txt > ACTUAL.TXT
 
 dos2unix ACTUAL.TXT
 
-# Compare the output to the expected output (EXPECTED-UNIX.TXT)
-diff -w ACTUAL.TXT EXPECTED-UNIX.TXT
+# Compare the output to the expected output (EXPECTED.TXT)
+diff -w ACTUAL.TXT EXPECTED.TXT
 if [ $? -eq 0 ]; then
     echo "Test result: PASSED"
     exit 0
