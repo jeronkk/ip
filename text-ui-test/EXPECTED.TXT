@@ -46,36 +46,36 @@ What can I do for you?
 ____________________________________________
 ____________________________________________
 Got it. I've added this task:
-[T][ ] read book
+[ ] read book
 Now you have 1 tasks in the list.
 ____________________________________________
 ____________________________________________
 Got it. I've added this task:
-[D][ ] return book (by: Sunday)
+[D][ ] trade Anthony Davis (by: Feb 6th)
 Now you have 2 tasks in the list.
 ____________________________________________
 ____________________________________________
 Got it. I've added this task:
-[E][ ] project meeting (from: Mon 2pm to: 4pm)
+[E][ ] team meeting (from: Mon 2pm to: 4pm)
 Now you have 3 tasks in the list.
 ____________________________________________
 ____________________________________________
 Here are the tasks in your list:
-1. [T][ ] read book
-2. [D][ ] return book (by: Sunday)
-3. [E][ ] project meeting (from: Mon 2pm to: 4pm)
+1. [ ] read book
+2. [D][ ] trade Anthony Davis (by: Feb 6th)
+3. [E][ ] team meeting (from: Mon 2pm to: 4pm)
 ____________________________________________
 ____________________________________________
 Nice! I've marked this task as done:
-  [T][X] read book
+  [X] read book
 ____________________________________________
 ____________________________________________
 OK, I've marked this task as not done yet:
-  [T][ ] read book
+  [ ] read book
 ____________________________________________
 ____________________________________________
 Noted. I've removed this task:
-  [D][ ] return book (by: Sunday)
+  [D][ ] trade Anthony Davis (by: Feb 6th)
 Now you have 2 tasks in the list.
 ____________________________________________
 ____________________________________________
@@ -95,17 +95,17 @@ OOPS!!! Invalid command! Try: todo, deadline, event, list, mark, unmark, bye
 ____________________________________________
 ____________________________________________
 Got it. I've added this task:
-[T][ ] finish assignment
+[ ] trade D-Lo
 Now you have 3 tasks in the list.
 ____________________________________________
 ____________________________________________
 Got it. I've added this task:
-[T][ ] watch movie
+[ ] watch Bronny in the G-League
 Now you have 4 tasks in the list.
 ____________________________________________
 ____________________________________________
 Got it. I've added this task:
-[D][ ] submit report (by: Friday)
+[D][ ] submit scouting report (by: Friday)
 Now you have 5 tasks in the list.
 ____________________________________________
 ____________________________________________
@@ -115,19 +115,19 @@ Now you have 6 tasks in the list.
 ____________________________________________
 ____________________________________________
 Noted. I've removed this task:
-  [T][ ] finish assignment
+  [ ] trade D-Lo
 Now you have 5 tasks in the list.
 ____________________________________________
 ____________________________________________
 Noted. I've removed this task:
-  [T][ ] read book
+  [ ] read book
 Now you have 4 tasks in the list.
 ____________________________________________
 ____________________________________________
 Here are the tasks in your list:
-1. [E][ ] project meeting (from: Mon 2pm to: 4pm)
-2. [T][ ] watch movie
-3. [D][ ] submit report (by: Friday)
+1. [E][ ] team meeting (from: Mon 2pm to: 4pm)
+2. [ ] watch Bronny in the G-League
+3. [D][ ] submit scouting report (by: Friday)
 4. [E][ ] team meeting (from: Wed 3pm to: 5pm)
 ____________________________________________
 ____________________________________________

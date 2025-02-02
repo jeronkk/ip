@@ -1,6 +1,6 @@
 todo read book
-deadline return book /by Sunday
-event project meeting /from Mon 2pm /to 4pm
+deadline trade Anthony Davis /by Feb 6th
+event team meeting /from Mon 2pm /to 4pm
 list
 mark 1
 unmark 1
@@ -8,11 +8,11 @@ delete 2
 delete 100
 mark 5
 todo
-deadline return book /by
-event project meeting /from Mon
-todo finish assignment
-todo watch movie
-deadline submit report /by Friday
+deadline trade Anthony Davis /by
+event team meeting /from Mon
+todo trade D-Lo
+todo watch Bronny in the G-League
+deadline submit scouting report /by Friday
 event team meeting /from Wed 3pm /to 5pm
 delete 3
 delete 1
