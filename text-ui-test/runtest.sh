@@ -10,6 +10,14 @@ if [ -e "./ACTUAL.TXT" ]; then
     rm ACTUAL.TXT
 fi
 
+# Clear the contents of LeChatBot.txt (or create it if it doesn't exist)
+if [ -e "../data/LeChatBot.txt" ]; then
+    > "../data/LeChatBot.txt"  # Truncate file to 0 bytes
+else
+    mkdir -p "../data"  # Ensure the data folder exists
+    touch "../data/LeChatBot.txt"  # Create an empty file
+fi
+
 # Compile the code into the bin folder, terminate if error occurred
 if ! javac -cp ../src/main/java -Xlint:none -d ../bin ../src/main/java/*.java; then
     echo "********** BUILD FAILURE **********"
@@ -17,7 +25,9 @@ if ! javac -cp ../src/main/java -Xlint:none -d ../bin ../src/main/java/*.java; t
 fi
 
 # Run the program, feed commands from input.txt file and redirect the output to ACTUAL.TXT
-java -classpath ../bin LeChatBot < input.txt > ACTUAL.TXT
+cd ..
+java -classpath bin LeChatBot < text-ui-test/input.txt > text-ui-test/ACTUAL.TXT
+cd text-ui-test
 
 dos2unix ACTUAL.TXT
 
