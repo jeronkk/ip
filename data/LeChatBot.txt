@@ -1,0 +1,4 @@
+E | 0 | team meeting | Mon 2pm | 4pm
+T | 0 | watch Bronny in the G-League
+D | 0 | submit scouting report | Friday
+E | 0 | team meeting | Wed 3pm | 5pm
