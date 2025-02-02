@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.List;
@@ -5,8 +6,20 @@ import java.util.List;
 public class LeChatBot {
     private static final String LINE = "____________________________________________";
     private static final int MAX_TASKS = 100;
-    private static List<Task> tasks = new ArrayList<>();
-    private static Scanner scanner = new Scanner(System.in);
+    private List<Task> tasks;
+    private Scanner scanner;
+    private Storage storage;
+
+    public LeChatBot() {
+        this.tasks = new ArrayList<>();
+        this.scanner = new Scanner(System.in);
+        this.storage = new Storage();
+        try {
+            this.tasks = this.storage.load();
+        } catch (IOException e) {
+            System.out.println(LINE + "\nError loading saved tasks: " + e.getMessage() + "\n" + LINE);
+        }
+    }
 
     public enum Command {
         LIST, MARK, UNMARK, TODO, DEADLINE, EVENT, DELETE, BYE, INVALID
@@ -20,7 +33,8 @@ public class LeChatBot {
         EMPTY_DESCRIPTION("OOPS!!! The description cannot be empty."),
         TASK_LIST_FULL("OOPS!!! The task list is full."),
         INVALID_COMMAND("OOPS!!! Invalid command! Try: todo, deadline, event, list, mark, unmark, bye"),
-        INVALID_TASK_NUMBER("OOPS!!! The task number provided is invalid.");
+        INVALID_TASK_NUMBER("OOPS!!! The task number provided is invalid."),
+        IO_ERROR("OOPS!!! An error occurred while saving or loading tasks.");
 
         private final String message;
 
@@ -87,7 +101,7 @@ public class LeChatBot {
         System.out.println(LINE + "\nBye. Hope to see you again soon!\n" + LINE);
     }
 
-    public static void printTaskList() {
+    public void printTaskList() {
         System.out.print(LINE);
         if (tasks.isEmpty()) {
             System.out.println("\nNo tasks added yet.");
@@ -112,38 +126,44 @@ public class LeChatBot {
         return Command.INVALID;
     }
 
-    public static void handleMarkTask(String input) throws LeChatBotException {
+    public void handleMarkTask(String input) throws LeChatBotException {
         try {
             int taskIndex = Integer.parseInt(input.substring(5)) - 1;
             if (taskIndex < 0 || taskIndex >= tasks.size()) {
                 throw new LeChatBotException(ErrorType.INVALID_TASK_NUMBER);
             }
             tasks.get(taskIndex).markAsDone();
+            storage.save(tasks);
             System.out.println(LINE + "\nNice! I've marked this task as done:\n  " + tasks.get(taskIndex) + "\n" + LINE);
         } catch (NumberFormatException e) {
             throw new LeChatBotException(ErrorType.INVALID_COMMAND);
+        } catch (IOException e) {
+            throw new LeChatBotException(ErrorType.IO_ERROR);
         }
     }
 
-    public static void handleUnmarkTask(String input) throws LeChatBotException {
+    public void handleUnmarkTask(String input) throws LeChatBotException {
         try {
             int taskIndex = Integer.parseInt(input.substring(7)) - 1;
             if (taskIndex < 0 || taskIndex >= tasks.size()) {
                 throw new LeChatBotException(ErrorType.INVALID_TASK_NUMBER);
             }
             tasks.get(taskIndex).markAsNotDone();
+            storage.save(tasks);
             System.out.println(LINE + "\nOK, I've marked this task as not done yet:\n  " + tasks.get(taskIndex) + "\n" + LINE);
         } catch (NumberFormatException e) {
             throw new LeChatBotException(ErrorType.INVALID_COMMAND);
+        } catch (IOException e) {
+            throw new LeChatBotException(ErrorType.IO_ERROR);
         }
     }
 
-    public static void printTaskAddedMessage(Task task) {
+    public void printTaskAddedMessage(Task task) {
         System.out.println(LINE + "\nGot it. I've added this task:\n" + task +
                 "\nNow you have " + tasks.size() + " tasks in the list.\n" + LINE);
     }
 
-    public static void handleTodoTask(String input) throws LeChatBotException {
+    public void handleTodoTask(String input) throws LeChatBotException {
         if (input.trim().equals("todo")) {
             throw new LeChatBotException(ErrorType.EMPTY_DESCRIPTION);
         }
@@ -151,10 +171,15 @@ public class LeChatBot {
             throw new LeChatBotException(ErrorType.TASK_LIST_FULL);
         }
         tasks.add(new Todo(input.substring(5)));
+        try {
+            storage.save(tasks);
+        } catch (IOException e) {
+            throw new LeChatBotException(ErrorType.IO_ERROR);
+        }
         printTaskAddedMessage(tasks.get(tasks.size() - 1));
     }
 
-    public static void handleDeadlineTask(String input) throws LeChatBotException {
+    public void handleDeadlineTask(String input) throws LeChatBotException {
         if (tasks.size() >= MAX_TASKS) {
             throw new LeChatBotException(ErrorType.TASK_LIST_FULL);
         }
@@ -163,10 +188,15 @@ public class LeChatBot {
             throw new LeChatBotException(ErrorType.INVALID_COMMAND);
         }
         tasks.add(new Deadline(parts[0], parts[1]));
+        try {
+            storage.save(tasks);
+        } catch (IOException e) {
+            throw new LeChatBotException(ErrorType.IO_ERROR);
+        }
         printTaskAddedMessage(tasks.get(tasks.size() - 1));
     }
 
-    public static void handleEventTask(String input) throws LeChatBotException {
+    public void handleEventTask(String input) throws LeChatBotException {
         if (tasks.size() >= MAX_TASKS) {
             throw new LeChatBotException(ErrorType.TASK_LIST_FULL);
         }
@@ -175,24 +205,32 @@ public class LeChatBot {
             throw new LeChatBotException(ErrorType.INVALID_COMMAND);
         }
         tasks.add(new Event(parts[0], parts[1], parts[2]));
+        try {
+            storage.save(tasks);
+        } catch (IOException e) {
+            throw new LeChatBotException(ErrorType.IO_ERROR);
+        }
         printTaskAddedMessage(tasks.get(tasks.size() - 1));
     }
 
-    public static void handleDeleteTask(String input) throws LeChatBotException {
+    public void handleDeleteTask(String input) throws LeChatBotException {
         try {
             int taskIndex = Integer.parseInt(input.substring(7)) - 1;
             if (taskIndex < 0 || taskIndex >= tasks.size()) {
                 throw new LeChatBotException(ErrorType.INVALID_TASK_NUMBER);
             }
             Task removedTask = tasks.remove(taskIndex);
+            storage.save(tasks);
             System.out.println(LINE + "\nNoted. I've removed this task:\n  " + removedTask +
                     "\nNow you have " + tasks.size() + " tasks in the list.\n" + LINE);
         } catch (NumberFormatException e) {
             throw new LeChatBotException(ErrorType.INVALID_COMMAND);
+        } catch (IOException e) {
+            throw new LeChatBotException(ErrorType.IO_ERROR);
         }
     }
 
-    public static void main(String[] args) {
+    public void run() {
         printWelcomeMessage();
 
         while (true) {
@@ -231,5 +269,10 @@ public class LeChatBot {
                 System.out.println(LINE + "\n" + e.getMessage() + "\n" + LINE);
             }
         }
+    }
+
+    public static void main(String[] args) {
+        LeChatBot chatbot = new LeChatBot();
+        chatbot.run();
     }
 }
