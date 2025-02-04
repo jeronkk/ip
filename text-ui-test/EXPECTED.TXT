@@ -51,19 +51,19 @@ Now you have 1 tasks in the list.
 ____________________________________________
 ____________________________________________
 Got it. I've added this task:
-[D][ ] trade Anthony Davis (by: Feb 6th)
+[D][ ] trade Anthony Davis (by: 06 Feb 2025, 12:00 AM)
 Now you have 2 tasks in the list.
 ____________________________________________
 ____________________________________________
 Got it. I've added this task:
-[E][ ] team meeting (from: Mon 2pm to: 4pm)
+[E][ ] team meeting (from: 03 Feb 2025, 2:00 PM to: 03 Feb 2025, 4:00 PM)
 Now you have 3 tasks in the list.
 ____________________________________________
 ____________________________________________
 Here are the tasks in your list:
 1. [ ] read book
-2. [D][ ] trade Anthony Davis (by: Feb 6th)
-3. [E][ ] team meeting (from: Mon 2pm to: 4pm)
+2. [D][ ] trade Anthony Davis (by: 06 Feb 2025, 12:00 AM)
+3. [E][ ] team meeting (from: 03 Feb 2025, 2:00 PM to: 03 Feb 2025, 4:00 PM)
 ____________________________________________
 ____________________________________________
 Nice! I've marked this task as done:
@@ -75,7 +75,7 @@ OK, I've marked this task as not done yet:
 ____________________________________________
 ____________________________________________
 Noted. I've removed this task:
-  [D][ ] trade Anthony Davis (by: Feb 6th)
+  [D][ ] trade Anthony Davis (by: 06 Feb 2025, 12:00 AM)
 Now you have 2 tasks in the list.
 ____________________________________________
 ____________________________________________
@@ -105,12 +105,12 @@ Now you have 4 tasks in the list.
 ____________________________________________
 ____________________________________________
 Got it. I've added this task:
-[D][ ] submit scouting report (by: Friday)
+[D][ ] submit scouting report (by: 07 Feb 2025, 11:59 PM)
 Now you have 5 tasks in the list.
 ____________________________________________
 ____________________________________________
 Got it. I've added this task:
-[E][ ] team meeting (from: Wed 3pm to: 5pm)
+[E][ ] team meeting (from: 03 Feb 2025, 3:00 PM to: 03 Feb 2025, 5:00 PM)
 Now you have 6 tasks in the list.
 ____________________________________________
 ____________________________________________
@@ -125,10 +125,10 @@ Now you have 4 tasks in the list.
 ____________________________________________
 ____________________________________________
 Here are the tasks in your list:
-1. [E][ ] team meeting (from: Mon 2pm to: 4pm)
+1. [E][ ] team meeting (from: 03 Feb 2025, 2:00 PM to: 03 Feb 2025, 4:00 PM)
 2. [ ] watch Bronny in the G-League
-3. [D][ ] submit scouting report (by: Friday)
-4. [E][ ] team meeting (from: Wed 3pm to: 5pm)
+3. [D][ ] submit scouting report (by: 07 Feb 2025, 11:59 PM)
+4. [E][ ] team meeting (from: 03 Feb 2025, 3:00 PM to: 03 Feb 2025, 5:00 PM)
 ____________________________________________
 ____________________________________________
 Bye. Hope to see you again soon!
