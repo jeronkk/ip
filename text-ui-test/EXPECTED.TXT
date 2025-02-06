@@ -41,13 +41,13 @@
 ╚══════╝╚══════╝╚═════╝ ╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═══╝     ╚════╝ ╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝╚══════╝
 
 ____________________________________________
-Hello! I'm Lebron James.
+Hello! I'm LeChatBot.
 What can I do for you?
 ____________________________________________
 ____________________________________________
 Got it. I've added this task:
 [ ] read book
-Now you have 1 tasks in the list.
+Now you have 1 task in the list.
 ____________________________________________
 ____________________________________________
 Got it. I've added this task:
@@ -85,13 +85,13 @@ ____________________________________________
 OOPS!!! The task number provided is invalid.
 ____________________________________________
 ____________________________________________
-OOPS!!! Invalid command! Try: todo, deadline, event, list, mark, unmark, bye
+OOPS!!! The description of a todo cannot be empty.
 ____________________________________________
 ____________________________________________
-OOPS!!! Invalid command! Try: todo, deadline, event, list, mark, unmark, bye
+OOPS!!! The deadline command must include a valid date using '/by'.
 ____________________________________________
 ____________________________________________
-OOPS!!! Invalid command! Try: todo, deadline, event, list, mark, unmark, bye
+OOPS!!! The event command must include both '/from' and '/to' with valid times.
 ____________________________________________
 ____________________________________________
 Got it. I've added this task:
