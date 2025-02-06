@@ -8,13 +8,28 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Handles loading and saving tasks to a file.
+ * This class provides methods to read stored tasks and save new tasks persistently.
+ */
 public class Storage {
     private final String filePath;
 
+    /**
+     * Constructs a Storage object with the given file path.
+     *
+     * @param filePath The path to the file where tasks are stored.
+     */
     public Storage(String filePath) {
         this.filePath = filePath;
     }
 
+    /**
+     * Parses a task from a given array of string components.
+     *
+     * @param parts The components of the task in stored file format.
+     * @return The parsed Task object, or null if parsing fails.
+     */
     private Task parseTask(String[] parts) {
         if (parts.length < 3) {
             return null;
@@ -47,6 +62,13 @@ public class Storage {
         return task;
     }
 
+    /**
+     * Loads tasks from the storage file.
+     * If the file does not exist, a new empty file is created.
+     *
+     * @return A list of tasks retrieved from the file.
+     * @throws IOException If an error occurs while reading the file.
+     */
     public List<Task> load() throws IOException {
         List<Task> tasks = new ArrayList<>();
         File file = new File(filePath);
@@ -81,6 +103,12 @@ public class Storage {
         return tasks;
     }
 
+    /**
+     * Saves the given list of tasks to the storage file.
+     *
+     * @param tasks The list of tasks to save.
+     * @throws IOException If an error occurs while writing to the file.
+     */
     public void save(List<Task> tasks) throws IOException {
         BufferedWriter writer = new BufferedWriter(new FileWriter(filePath));
         for (Task task : tasks) {

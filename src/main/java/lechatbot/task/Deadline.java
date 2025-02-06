@@ -6,16 +6,34 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+/**
+ * Represents a task with a deadline.
+ * A <code>Deadline</code> object contains a description and a due date.
+ */
 public class Deadline extends Task {
     private LocalDateTime dueDate;
     private static final DateTimeFormatter INPUT_FORMATTER = DateTimeFormatter.ofPattern("d/M/yyyy HHmm");
     private static final DateTimeFormatter OUTPUT_FORMATTER = DateTimeFormatter.ofPattern("dd MMM yyyy, h:mm a");
 
+    /**
+     * Constructs a Deadline task with the specified description and due date.
+     *
+     * @param description The description of the task.
+     * @param by The deadline in "d/M/yyyy HHmm" or "d/M/yyyy" format.
+     */
     public Deadline(String description, String by) {
         super(description);
         this.dueDate = parseDateTime(by);
     }
 
+    /**
+     * Parses a date-time string into a LocalDateTime object.
+     * Accepts "d/M/yyyy HHmm" for full date-time or "d/M/yyyy" for date only.
+     *
+     * @param dateTime The string representation of the date and time.
+     * @return The parsed LocalDateTime object.
+     * @throws IllegalArgumentException If the format is invalid.
+     */
     private LocalDateTime parseDateTime(String dateTime) {
         try {
             DateTimeFormatter formatterWithTime = DateTimeFormatter.ofPattern("d/M/yyyy HHmm");
@@ -30,7 +48,11 @@ public class Deadline extends Task {
         }
     }
 
-
+    /**
+     * Converts the deadline task to a file-friendly format.
+     *
+     * @return A string representing the deadline task in file format.
+     */
     @Override
     public String toFileFormat() {
         DateTimeFormatter saveFormatWithTime = DateTimeFormatter.ofPattern("d/M/yyyy HHmm");
@@ -41,6 +63,11 @@ public class Deadline extends Task {
         return "D | " + (isDone ? "1" : "0") + " | " + description + " | " + formattedDate;
     }
 
+    /**
+     * Returns a string representation of the deadline task.
+     *
+     * @return A string representing the deadline task.
+     */
     @Override
     public String toString() {
         return "[D]" + super.toString() + " (by: " + dueDate.format(OUTPUT_FORMATTER) + ")";
