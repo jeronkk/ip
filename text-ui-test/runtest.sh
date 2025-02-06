@@ -19,14 +19,14 @@ else
 fi
 
 # Compile the code into the bin folder, terminate if error occurred
-if ! javac -cp ../src/main/java -Xlint:none -d ../bin ../src/main/java/*.java; then
+if ! javac -cp ../src/main/java -Xlint:none -d ../bin $(find ../src/main/java -name "*.java"); then
     echo "********** BUILD FAILURE **********"
     exit 1
 fi
 
 # Run the program, feed commands from input.txt file and redirect the output to ACTUAL.TXT
 cd ..
-java -classpath bin LeChatBot < text-ui-test/input.txt > text-ui-test/ACTUAL.TXT
+java -classpath bin lechatbot.LeChatBot < text-ui-test/input.txt > text-ui-test/ACTUAL.TXT
 cd text-ui-test
 
 dos2unix ACTUAL.TXT
