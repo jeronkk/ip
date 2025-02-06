@@ -1,3 +1,10 @@
+package lechatbot.command;
+
+import lechatbot.LeChatBotException;
+import lechatbot.Storage;
+import lechatbot.task.TaskList;
+import lechatbot.Ui;
+
 import java.io.IOException;
 
 public class MarkCommand extends Command {

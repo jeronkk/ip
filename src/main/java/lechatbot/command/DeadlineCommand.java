@@ -1,3 +1,9 @@
+package lechatbot.command;
+
+import lechatbot.*;
+import lechatbot.task.Deadline;
+import lechatbot.task.TaskList;
+
 import java.io.IOException;
 
 public class DeadlineCommand extends Command {

@@ -1,3 +1,8 @@
+package lechatbot;
+
+import lechatbot.command.Command;
+import lechatbot.task.TaskList;
+
 public class LeChatBot {
     private Storage storage;
     private TaskList tasks;

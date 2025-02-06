@@ -1,9 +1,16 @@
+package lechatbot.command;
+
+import lechatbot.LeChatBotException;
+import lechatbot.Storage;
+import lechatbot.task.TaskList;
+import lechatbot.Ui;
+
 import java.io.IOException;
 
-public class DeleteCommand extends Command {
+public class UnmarkCommand extends Command {
     private final int taskIndex;
 
-    public DeleteCommand(int taskIndex) {
+    public UnmarkCommand(int taskIndex) {
         this.taskIndex = taskIndex;
     }
 
@@ -12,11 +19,10 @@ public class DeleteCommand extends Command {
         if (taskIndex < 0 || taskIndex >= tasks.size()) {
             throw new LeChatBotException("OOPS!!! The task number provided is invalid.");
         }
-        Task removedTask = tasks.remove(taskIndex);
+        tasks.get(taskIndex).markAsNotDone();
         ui.showLine();
-        System.out.println("Noted. I've removed this task:");
-        System.out.println("  " + removedTask);
-        System.out.println("Now you have " + tasks.size() + " task" + (tasks.size() > 1 ? "s" : "") + " in the list.");
+        System.out.println("OK, I've marked this task as not done yet:");
+        System.out.println("  " + tasks.get(taskIndex));
         ui.showLine();
         try {
             storage.save(tasks.getTasks());
@@ -24,5 +30,4 @@ public class DeleteCommand extends Command {
             throw new LeChatBotException("OOPS!!! An error occurred while saving tasks.");
         }
     }
-
 }

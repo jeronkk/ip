@@ -1,3 +1,9 @@
+package lechatbot.command;
+
+import lechatbot.*;
+import lechatbot.task.Event;
+import lechatbot.task.TaskList;
+
 import java.io.IOException;
 
 public class EventCommand extends Command {

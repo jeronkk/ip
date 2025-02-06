@@ -1,3 +1,9 @@
+package lechatbot;
+
+import lechatbot.task.Deadline;
+import lechatbot.task.Event;
+import lechatbot.task.Task;
+import lechatbot.task.Todo;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;

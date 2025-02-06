@@ -1,3 +1,9 @@
+package lechatbot.command;
+
+import lechatbot.*;
+import lechatbot.task.Task;
+import lechatbot.task.TaskList;
+
 import java.io.IOException;
 
 public class AddCommand extends Command {
