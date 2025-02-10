@@ -98,4 +98,13 @@ public class Ui {
     public String readCommand() {
         return scanner.nextLine().trim();
     }
+
+    public void showMatchingTasks(TaskList matchingTasks) {
+        System.out.println("Here are the matching tasks in your list:");
+        System.out.println("________________________________________");
+        for (int i = 0; i < matchingTasks.getSize(); i++) {
+            System.out.println((i + 1) + ". " + matchingTasks.getTask(i));
+        }
+        System.out.println("________________________________________");
+    }
 }
