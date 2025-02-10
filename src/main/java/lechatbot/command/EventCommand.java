@@ -6,13 +6,30 @@ import lechatbot.task.TaskList;
 
 import java.io.IOException;
 
+/**
+ * Represents a command to add an event task to the task list.
+ */
 public class EventCommand extends Command {
     private final Event event;
 
+    /**
+     * Constructs an EventCommand with the specified event.
+     *
+     * @param event The event task to be added.
+     */
     public EventCommand(Event event) {
         this.event = event;
     }
 
+    /**
+     * Executes the command by adding the event task to the task list,
+     * displaying the confirmation message, and saving the task list.
+     *
+     * @param tasks   The task list where the event will be added.
+     * @param ui      The UI handler for displaying messages.
+     * @param storage The storage handler for saving tasks.
+     * @throws LeChatBotException If an error occurs while saving tasks.
+     */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws LeChatBotException {
         tasks.add(event);
@@ -29,6 +46,13 @@ public class EventCommand extends Command {
         }
     }
 
+    /**
+     * Creates an EventCommand from user input.
+     *
+     * @param taskDetails The raw input string containing event details.
+     * @return A new EventCommand object.
+     * @throws LeChatBotException If the input format is incorrect.
+     */
     public static EventCommand createFromUserInput(String taskDetails) throws LeChatBotException {
         String[] parts = taskDetails.split(" /from ", 2);
         if (parts.length < 2 || !parts[1].contains(" /to ")) {

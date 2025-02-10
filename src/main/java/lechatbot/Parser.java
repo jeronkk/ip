@@ -3,7 +3,19 @@ package lechatbot;
 import lechatbot.command.*;
 import lechatbot.task.Todo;
 
+/**
+ * Parses user input and returns the corresponding command.
+ * This class is responsible for interpreting and validating user commands.
+ */
 public class Parser {
+
+    /**
+     * Parses the user input and returns the appropriate {@link Command} object.
+     *
+     * @param userInput The full command input by the user.
+     * @return The corresponding {@link Command} instance.
+     * @throws LeChatBotException If the command is invalid or required parameters are missing.
+     */
     public static Command parse(String userInput) throws LeChatBotException {
         String[] parts = userInput.split(" ", 2);
 
@@ -54,6 +66,14 @@ public class Parser {
         }
     }
 
+    /**
+     * Processes commands related to specific tasks such as marking, unmarking, or deleting a task.
+     *
+     * @param commandWord The task-related command (mark, unmark, delete).
+     * @param taskDetails The task number provided as input.
+     * @return The corresponding {@link Command} instance for the given task action.
+     * @throws LeChatBotException If the task number is invalid or if the command is unrecognized.
+     */
     private static Command processTaskCommand(String commandWord, String taskDetails) throws LeChatBotException {
         try {
             int taskIndex = Integer.parseInt(taskDetails) - 1; // Convert to 0-based index

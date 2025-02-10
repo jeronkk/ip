@@ -6,13 +6,30 @@ import lechatbot.task.TaskList;
 
 import java.io.IOException;
 
+/**
+ * Represents a command to delete a task from the task list.
+ */
 public class DeleteCommand extends Command {
     private final int taskIndex;
 
+    /**
+     * Constructs a DeleteCommand with the specified task index.
+     *
+     * @param taskIndex The index of the task to be deleted.
+     */
     public DeleteCommand(int taskIndex) {
         this.taskIndex = taskIndex;
     }
 
+    /**
+     * Executes the delete command by removing the task at the given index from the task list.
+     * It also updates the storage file and notifies the user of the deleted task.
+     *
+     * @param tasks   The task list from which the task will be removed.
+     * @param ui      The UI instance to interact with the user.
+     * @param storage The storage instance to save the updated task list.
+     * @throws LeChatBotException If the task index is out of bounds or an error occurs while saving.
+     */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws LeChatBotException {
         if (taskIndex < 0 || taskIndex >= tasks.size()) {
@@ -30,5 +47,4 @@ public class DeleteCommand extends Command {
             throw new LeChatBotException("OOPS!!! An error occurred while saving tasks.");
         }
     }
-
 }
