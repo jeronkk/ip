@@ -64,6 +64,12 @@ public class Parser {
                 }
                 return processTaskCommand(commandWord, taskDetails);
 
+            case "find":
+                if (taskDetails.isEmpty()) {
+                    throw new LeChatBotException("OOPS!!! You must specify a keyword to search.");
+                }
+                return new FindCommand(taskDetails);
+
             case "bye":
                 return new ExitCommand();
 
