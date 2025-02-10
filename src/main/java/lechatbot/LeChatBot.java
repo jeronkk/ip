@@ -58,9 +58,9 @@ public class LeChatBot {
         private final String message;
 
         /**
-         * Constructs an ErrorType with a specified message.
+         * Constructs an ErrorType with the specified error message.
          *
-         * @param message The error message.
+         * @param message The error message associated with this error type.
          */
         ErrorType(String message) {
             this.message = message;
