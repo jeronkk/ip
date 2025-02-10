@@ -3,11 +3,20 @@ package lechatbot;
 import lechatbot.command.Command;
 import lechatbot.task.TaskList;
 
+/**
+ * LeChatBot is a chatbot that helps users manage their tasks.
+ * It supports commands to add, delete, mark, and list tasks.
+ */
 public class LeChatBot {
     private Storage storage;
     private TaskList tasks;
     private Ui ui;
 
+    /**
+     * Constructs a LeChatBot instance with the specified file path for data storage.
+     *
+     * @param filePath The file path to load and save task data.
+     */
     public LeChatBot(String filePath) {
         ui = new Ui();
         storage = new Storage(filePath);
@@ -19,6 +28,9 @@ public class LeChatBot {
         }
     }
 
+    /**
+     * Defines error types for handling different exceptions in LeChatBot.
+     */
     public enum ErrorType {
         EMPTY_DESCRIPTION("OOPS!!! The description cannot be empty."),
         TASK_LIST_FULL("OOPS!!! The task list is full."),
@@ -28,15 +40,28 @@ public class LeChatBot {
 
         private final String message;
 
+        /**
+         * Constructs an ErrorType with the specified error message.
+         *
+         * @param message The error message associated with this error type.
+         */
         ErrorType(String message) {
             this.message = message;
         }
 
+        /**
+         * Retrieves the error message associated with this error type.
+         *
+         * @return The error message as a String.
+         */
         public String getMessage() {
             return message;
         }
     }
 
+    /**
+     * Runs the chatbot, processing user input until the exit command is received.
+     */
     public void run() {
         ui.showWelcome();
         boolean isExit = false;
@@ -52,6 +77,11 @@ public class LeChatBot {
         }
     }
 
+    /**
+     * The main entry point for running LeChatBot.
+     *
+     * @param args Command-line arguments (not used).
+     */
     public static void main(String[] args) {
         new LeChatBot("data/LeChatBot.txt").run();
     }
