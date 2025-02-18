@@ -2,7 +2,7 @@ package lechatbot.command;
 
 import lechatbot.LeChatBotException;
 import lechatbot.Storage;
-import lechatbot.Ui;
+import lechatbot.ui.Ui;
 import lechatbot.task.TaskList;
 
 /**
@@ -12,28 +12,38 @@ public class FindCommand extends Command {
     private final String keyword;
 
     /**
-     * Constructs a FindCommand with the specified keyword.
+     * Constructs a {@code FindCommand} with the specified keyword.
      *
-     * @param keyword The keyword to search for.
+     * @param keyword The keyword to search for in the task list.
      */
     public FindCommand(String keyword) {
+        super(null);
         this.keyword = keyword;
     }
 
     /**
-     * Executes the command by searching for tasks containing the keyword.
+     * Executes the find command by searching for tasks containing the keyword.
      *
-     * @param taskList The list of tasks to search in.
+     * @param taskList The list of tasks to search within.
      * @param ui       The user interface for displaying results.
+     * @param storage  The storage handler (not used in this command).
+     * @return A response containing the list of matching tasks or a "no match" message.
      * @throws LeChatBotException If no matching tasks are found.
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) throws LeChatBotException {
+    public String execute(TaskList taskList, Ui ui, Storage storage) throws LeChatBotException {
         TaskList matchingTasks = taskList.findTasks(keyword);
         if (matchingTasks.getSize() == 0) {
             throw new LeChatBotException("No matching tasks found for keyword: " + keyword);
         }
 
-        ui.showMatchingTasks(matchingTasks); // Ensure this method exists in Ui.java
+        String response = ui.showMatchingTasks(matchingTasks);
+        System.out.println(response);
+        return response;
+    }
+
+    @Override
+    public String toString() {
+        return "FindCommand";
     }
 }

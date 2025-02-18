@@ -2,6 +2,7 @@ package lechatbot;
 
 import lechatbot.command.Command;
 import lechatbot.task.TaskList;
+import lechatbot.ui.Ui;
 
 /**
  * The main entry point for the LeChatBot application.
@@ -12,6 +13,7 @@ public class LeChatBot {
     private Storage storage;
     private TaskList tasks;
     private Ui ui;
+    private String commandType;
 
     /**
      * Constructs a new LeChatBot instance.
@@ -94,6 +96,24 @@ public class LeChatBot {
                 ui.showError(e.getMessage());
             }
         }
+    }
+
+    /**
+     * Generates a response for the user's chat message.
+     */
+    public String getResponse(String input) {
+        try {
+            Command c = Parser.parse(input);
+            String response = c.execute(tasks, ui, storage);
+            commandType = c.getClass().getSimpleName();
+            return response;
+        } catch (LeChatBotException e) {
+            return "Error: " + e.getMessage();
+        }
+    }
+
+    public String getCommandType() {
+        return commandType;
     }
 
     /**

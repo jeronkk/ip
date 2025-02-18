@@ -46,17 +46,17 @@ What can I do for you?
 ____________________________________________
 ____________________________________________
 Got it. I've added this task:
-[ ] read book
+  [ ] read book
 Now you have 1 task in the list.
 ____________________________________________
 ____________________________________________
 Got it. I've added this task:
-[D][ ] trade Anthony Davis (by: 06 Feb 2025, 12:00 AM)
+  [D][ ] trade Anthony Davis (by: 06 Feb 2025, 12:00 AM)
 Now you have 2 tasks in the list.
 ____________________________________________
 ____________________________________________
 Got it. I've added this task:
-[E][ ] team meeting (from: 03 Feb 2025, 2:00 PM to: 03 Feb 2025, 4:00 PM)
+  [E][ ] team meeting (from: 03 Feb 2025, 2:00 PM to: 03 Feb 2025, 4:00 PM)
 Now you have 3 tasks in the list.
 ____________________________________________
 ____________________________________________
@@ -95,22 +95,22 @@ OOPS!!! The event command must include both '/from' and '/to' with valid times.
 ____________________________________________
 ____________________________________________
 Got it. I've added this task:
-[ ] trade D-Lo
+  [ ] trade D-Lo
 Now you have 3 tasks in the list.
 ____________________________________________
 ____________________________________________
 Got it. I've added this task:
-[ ] watch Bronny in the G-League
+  [ ] watch Bronny in the G-League
 Now you have 4 tasks in the list.
 ____________________________________________
 ____________________________________________
 Got it. I've added this task:
-[D][ ] submit scouting report (by: 07 Feb 2025, 11:59 PM)
+  [D][ ] submit scouting report (by: 07 Feb 2025, 11:59 PM)
 Now you have 5 tasks in the list.
 ____________________________________________
 ____________________________________________
 Got it. I've added this task:
-[E][ ] team meeting (from: 03 Feb 2025, 3:00 PM to: 03 Feb 2025, 5:00 PM)
+  [E][ ] team meeting (from: 03 Feb 2025, 3:00 PM to: 03 Feb 2025, 5:00 PM)
 Now you have 6 tasks in the list.
 ____________________________________________
 ____________________________________________

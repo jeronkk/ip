@@ -2,8 +2,9 @@ package lechatbot.command;
 
 import lechatbot.LeChatBotException;
 import lechatbot.Storage;
+import lechatbot.task.Task;
 import lechatbot.task.TaskList;
-import lechatbot.Ui;
+import lechatbot.ui.Ui;
 
 import java.io.IOException;
 
@@ -14,11 +15,12 @@ public class MarkCommand extends Command {
     private final int taskIndex;
 
     /**
-     * Constructs a MarkCommand with the specified task index.
+     * Constructs a {@code MarkCommand} with the specified task index.
      *
      * @param taskIndex The index of the task to be marked as done.
      */
     public MarkCommand(int taskIndex) {
+        super(null);
         this.taskIndex = taskIndex;
     }
 
@@ -29,21 +31,33 @@ public class MarkCommand extends Command {
      * @param ui      The UI instance to interact with the user.
      * @param storage The storage instance to save changes.
      * @throws LeChatBotException If the task index is invalid or an error occurs during saving.
+     * @return A string message confirming that the task has been marked as done.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws LeChatBotException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws LeChatBotException {
         if (taskIndex < 0 || taskIndex >= tasks.size()) {
             throw new LeChatBotException("OOPS!!! The task number provided is invalid.");
         }
-        tasks.get(taskIndex).markAsDone();
-        ui.showLine();
-        System.out.println("Nice! I've marked this task as done:");
-        System.out.println("  " + tasks.get(taskIndex));
-        ui.showLine();
+
+        Task task = tasks.get(taskIndex);
+        task.markAsDone();
+
+        String response = "Nice! I've marked this task as done:\n  " + task;
+
         try {
             storage.save(tasks.getTasks());
         } catch (IOException e) {
             throw new LeChatBotException("OOPS!!! An error occurred while saving tasks.");
         }
+
+        ui.showLine();
+        System.out.println(response);
+        ui.showLine();
+        return response;
+    }
+
+    @Override
+    public String toString() {
+        return "MarkCommand";
     }
 }
