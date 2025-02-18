@@ -1,10 +1,16 @@
 package lechatbot;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
+
+import org.junit.jupiter.api.Test;
+
 import lechatbot.command.AddCommand;
 import lechatbot.command.Command;
 import lechatbot.command.DeadlineCommand;
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
 
 public class ParserTest {
 
@@ -36,6 +42,7 @@ public class ParserTest {
             Parser.parse("invalidcommand");
         });
 
-        assertEquals("OOPS!!! Invalid command! Try: todo, deadline, event, list, mark, unmark, bye", exception.getMessage());
+        assertEquals(
+                "OOPS!!! Invalid command! Try: todo, deadline, event, list, mark, unmark, bye", exception.getMessage());
     }
 }

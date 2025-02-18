@@ -1,12 +1,18 @@
 package lechatbot;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 import lechatbot.task.Deadline;
 import lechatbot.task.Event;
 import lechatbot.task.Task;
 import lechatbot.task.Todo;
-import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Handles loading and saving tasks to a file.
@@ -41,19 +47,20 @@ public class Storage {
 
         Task task = null;
         switch (type) {
-            case "T":
-                task = new Todo(description);
-                break;
-            case "D":
-                if (parts.length >= 4) {
-                    task = new Deadline(description, parts[3]);
-                }
-                break;
-            case "E":
-                if (parts.length >= 5) {
-                    task = new Event(description, parts[3], parts[4]);
-                }
-                break;
+        case "T":
+            task = new Todo(description);
+            break;
+        case "D":
+            if (parts.length >= 4) {
+                task = new Deadline(description, parts[3]);
+            }
+            break;
+        case "E":
+            if (parts.length >= 5) {
+                task = new Event(description, parts[3], parts[4]);
+            }
+            break;
+        default:
         }
 
         if (task != null && isDone) {

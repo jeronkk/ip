@@ -1,11 +1,12 @@
 package lechatbot.command;
 
-import lechatbot.*;
+import java.io.IOException;
+
+import lechatbot.LeChatBotException;
+import lechatbot.Storage;
 import lechatbot.task.Task;
 import lechatbot.task.TaskList;
 import lechatbot.ui.Ui;
-
-import java.io.IOException;
 
 /**
  * Represents a command to delete a task from the task list.

@@ -1,11 +1,12 @@
 package lechatbot.command;
 
-import lechatbot.*;
+import java.io.IOException;
+
+import lechatbot.LeChatBotException;
+import lechatbot.Storage;
 import lechatbot.task.Deadline;
 import lechatbot.task.TaskList;
 import lechatbot.ui.Ui;
-
-import java.io.IOException;
 
 /**
  * Represents a command to add a {@link Deadline} task to the task list.

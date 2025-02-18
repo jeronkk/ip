@@ -1,6 +1,15 @@
 package lechatbot;
 
-import lechatbot.command.*;
+import lechatbot.command.AddCommand;
+import lechatbot.command.Command;
+import lechatbot.command.DeadlineCommand;
+import lechatbot.command.DeleteCommand;
+import lechatbot.command.EventCommand;
+import lechatbot.command.ExitCommand;
+import lechatbot.command.FindCommand;
+import lechatbot.command.ListCommand;
+import lechatbot.command.MarkCommand;
+import lechatbot.command.UnmarkCommand;
 import lechatbot.task.Todo;
 
 /**
@@ -11,10 +20,13 @@ public class Parser {
     private static final String ERROR_EMPTY_TODO = "OOPS!!! The description of a todo cannot be empty.";
     private static final String ERROR_EMPTY_DEADLINE = "OOPS!!! The description of a deadline cannot be empty.";
     private static final String ERROR_EMPTY_EVENT = "OOPS!!! The description of an event cannot be empty.";
-    private static final String ERROR_INVALID_DEADLINE = "OOPS!!! The deadline command must include a valid date using '/by'.";
-    private static final String ERROR_INVALID_EVENT = "OOPS!!! The event command must include both '/from' and '/to' with valid times.";
+    private static final String ERROR_INVALID_DEADLINE =
+            "OOPS!!! The deadline command must include a valid date using '/by'.";
+    private static final String ERROR_INVALID_EVENT =
+            "OOPS!!! The event command must include both '/from' and '/to' with valid times.";
     private static final String ERROR_MISSING_TASK_NUMBER = "OOPS!!! You must specify a task number.";
-    private static final String ERROR_INVALID_COMMAND = "OOPS!!! Invalid command! Try: todo, deadline, event, list, mark, unmark, delete, bye.";
+    private static final String ERROR_INVALID_COMMAND =
+            "OOPS!!! Invalid command! Try: todo, deadline, event, list, mark, unmark, delete, bye.";
 
     /**
      * Parses user input and returns the corresponding {@code Command}.
@@ -29,52 +41,52 @@ public class Parser {
         String taskDetails = (parts.length > 1) ? parts[1].trim() : "";
 
         switch (commandWord) {
-            case "todo":
-                if (taskDetails.isEmpty()) {
-                    throw new LeChatBotException(ERROR_EMPTY_TODO);
-                }
-                return new AddCommand(new Todo(taskDetails));
+        case "todo":
+            if (taskDetails.isEmpty()) {
+                throw new LeChatBotException(ERROR_EMPTY_TODO);
+            }
+            return new AddCommand(new Todo(taskDetails));
 
-            case "deadline":
-                if (taskDetails.isEmpty()) {
-                    throw new LeChatBotException(ERROR_EMPTY_DEADLINE);
-                }
-                if (!taskDetails.contains("/by")) {
-                    throw new LeChatBotException(ERROR_INVALID_DEADLINE);
-                }
-                return DeadlineCommand.createFromUserInput(taskDetails);
+        case "deadline":
+            if (taskDetails.isEmpty()) {
+                throw new LeChatBotException(ERROR_EMPTY_DEADLINE);
+            }
+            if (!taskDetails.contains("/by")) {
+                throw new LeChatBotException(ERROR_INVALID_DEADLINE);
+            }
+            return DeadlineCommand.createFromUserInput(taskDetails);
 
-            case "event":
-                if (taskDetails.isEmpty()) {
-                    throw new LeChatBotException(ERROR_EMPTY_EVENT);
-                }
-                if (!taskDetails.contains("/from") || !taskDetails.contains("/to")) {
-                    throw new LeChatBotException(ERROR_INVALID_EVENT);
-                }
-                return EventCommand.createFromUserInput(taskDetails);
+        case "event":
+            if (taskDetails.isEmpty()) {
+                throw new LeChatBotException(ERROR_EMPTY_EVENT);
+            }
+            if (!taskDetails.contains("/from") || !taskDetails.contains("/to")) {
+                throw new LeChatBotException(ERROR_INVALID_EVENT);
+            }
+            return EventCommand.createFromUserInput(taskDetails);
 
-            case "list":
-                return new ListCommand();
+        case "list":
+            return new ListCommand();
 
-            case "mark":
-            case "unmark":
-            case "delete":
-                if (taskDetails.isEmpty()) {
-                    throw new LeChatBotException(ERROR_MISSING_TASK_NUMBER);
-                }
-                return processTaskCommand(commandWord, taskDetails);
+        case "mark":
+        case "unmark":
+        case "delete":
+            if (taskDetails.isEmpty()) {
+                throw new LeChatBotException(ERROR_MISSING_TASK_NUMBER);
+            }
+            return processTaskCommand(commandWord, taskDetails);
 
-            case "find":
-                if (taskDetails.isEmpty()) {
-                    throw new LeChatBotException("OOPS!!! You must specify a keyword to search.");
-                }
-                return new FindCommand(taskDetails);
+        case "find":
+            if (taskDetails.isEmpty()) {
+                throw new LeChatBotException("OOPS!!! You must specify a keyword to search.");
+            }
+            return new FindCommand(taskDetails);
 
-            case "bye":
-                return new ExitCommand();
+        case "bye":
+            return new ExitCommand();
 
-            default:
-                throw new LeChatBotException(ERROR_INVALID_COMMAND);
+        default:
+            throw new LeChatBotException(ERROR_INVALID_COMMAND);
         }
     }
 
@@ -91,14 +103,14 @@ public class Parser {
             int taskIndex = Integer.parseInt(taskDetails) - 1;
 
             switch (commandWord) {
-                case "mark":
-                    return new MarkCommand(taskIndex);
-                case "unmark":
-                    return new UnmarkCommand(taskIndex);
-                case "delete":
-                    return new DeleteCommand(taskIndex);
-                default:
-                    throw new LeChatBotException("OOPS!!! Unknown task command.");
+            case "mark":
+                return new MarkCommand(taskIndex);
+            case "unmark":
+                return new UnmarkCommand(taskIndex);
+            case "delete":
+                return new DeleteCommand(taskIndex);
+            default:
+                throw new LeChatBotException("OOPS!!! Unknown task command.");
             }
         } catch (NumberFormatException e) {
             throw new LeChatBotException("OOPS!!! Task number must be a valid integer.");
