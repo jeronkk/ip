@@ -82,6 +82,13 @@ public class TaskList {
         return tasks;
     }
 
+    /**
+     * Finds and returns a list of tasks that contain the specified keyword.
+     * The search is case-insensitive.
+     *
+     * @param keyword The keyword to search for in task descriptions.
+     * @return A {@code TaskList} containing tasks that match the keyword.
+     */
     public TaskList findTasks(String keyword) {
         TaskList matchingTasks = new TaskList();
         for (Task task : tasks) {

@@ -1,12 +1,12 @@
 package lechatbot.command;
 
+import java.io.IOException;
+
 import lechatbot.LeChatBotException;
 import lechatbot.Storage;
 import lechatbot.task.Task;
 import lechatbot.task.TaskList;
 import lechatbot.ui.Ui;
-
-import java.io.IOException;
 
 /**
  * Represents a command to mark a task as not done in the task list.
@@ -30,8 +30,8 @@ public class UnmarkCommand extends Command {
      * @param tasks   The task list containing the task.
      * @param ui      The UI instance to interact with the user.
      * @param storage The storage instance to save changes.
-     * @throws LeChatBotException If the task index is invalid or an error occurs during saving.
      * @return A string message confirming that the task has been marked as not done.
+     * @throws LeChatBotException If the task index is invalid or an error occurs during saving.
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws LeChatBotException {

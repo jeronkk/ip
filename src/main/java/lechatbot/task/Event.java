@@ -1,8 +1,8 @@
 package lechatbot.task;
 
-import java.time.LocalTime;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
@@ -11,10 +11,10 @@ import java.time.format.DateTimeParseException;
  * An <code>Event</code> object contains a description, a start time, and an end time.
  */
 public class Event extends Task {
-    private LocalDateTime startTime;
-    private LocalDateTime endTime;
     private static final DateTimeFormatter INPUT_FORMATTER = DateTimeFormatter.ofPattern("d/M/yyyy HHmm");
     private static final DateTimeFormatter OUTPUT_FORMATTER = DateTimeFormatter.ofPattern("dd MMM yyyy, h:mm a");
+    private final LocalDateTime startTime;
+    private final LocalDateTime endTime;
 
     /**
      * Constructs an Event task with a description, start time, and end time.
@@ -46,7 +46,8 @@ public class Event extends Task {
                 DateTimeFormatter formatterWithoutTime = DateTimeFormatter.ofPattern("d/M/yyyy");
                 return LocalDate.parse(dateTime, formatterWithoutTime).atStartOfDay();
             } catch (DateTimeParseException e2) {
-                throw new IllegalArgumentException("Invalid date format! Use 'd/M/yyyy HHmm' (e.g., 2/12/2019 1800) or 'd/M/yyyy' (e.g., 2/12/2019).");
+                throw new IllegalArgumentException("Invalid date format! Use 'd/M/yyyy HHmm' "
+                                + "(e.g., 2/12/2019 1800) or 'd/M/yyyy' (e.g., 2/12/2019).");
             }
         }
     }
@@ -61,14 +62,14 @@ public class Event extends Task {
         DateTimeFormatter saveFormatWithTime = DateTimeFormatter.ofPattern("d/M/yyyy HHmm");
         DateTimeFormatter saveFormatWithoutTime = DateTimeFormatter.ofPattern("d/M/yyyy");
 
-        String formattedStart = (startTime.toLocalTime().equals(LocalTime.MIDNIGHT)) ?
-                startTime.format(saveFormatWithoutTime) : startTime.format(saveFormatWithTime);
+        String formattedStart = (startTime.toLocalTime().equals(LocalTime.MIDNIGHT))
+                ? startTime.format(saveFormatWithoutTime) : startTime.format(saveFormatWithTime);
 
-        String formattedEnd = (endTime.toLocalTime().equals(LocalTime.MIDNIGHT)) ?
-                endTime.format(saveFormatWithoutTime) : endTime.format(saveFormatWithTime);
+        String formattedEnd = (endTime.toLocalTime().equals(LocalTime.MIDNIGHT))
+                ? endTime.format(saveFormatWithoutTime) : endTime.format(saveFormatWithTime);
 
-        return "E | " + (isDone ? "1" : "0") + " | " + description + " | " +
-                formattedStart + " | " + formattedEnd;
+        return "E | " + (isDone ? "1" : "0") + " | " + description + " | "
+                + formattedStart + " | " + formattedEnd;
     }
 
     /**
@@ -78,7 +79,7 @@ public class Event extends Task {
      */
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (from: " + startTime.format(OUTPUT_FORMATTER) +
-                " to: " + endTime.format(OUTPUT_FORMATTER) + ")";
+        return "[E]" + super.toString() + " (from: " + startTime.format(OUTPUT_FORMATTER)
+                + " to: " + endTime.format(OUTPUT_FORMATTER) + ")";
     }
 }

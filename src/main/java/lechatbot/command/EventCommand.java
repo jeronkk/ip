@@ -1,11 +1,12 @@
 package lechatbot.command;
 
-import lechatbot.*;
+import java.io.IOException;
+
+import lechatbot.LeChatBotException;
+import lechatbot.Storage;
 import lechatbot.task.Event;
 import lechatbot.task.TaskList;
 import lechatbot.ui.Ui;
-
-import java.io.IOException;
 
 /**
  * Represents a command to add an event task to the task list.
@@ -61,7 +62,8 @@ public class EventCommand extends Command {
     public static EventCommand createFromUserInput(String taskDetails) throws LeChatBotException {
         String[] parts = taskDetails.split(" /from ", 2);
         if (parts.length < 2 || !parts[1].contains(" /to ")) {
-            throw new LeChatBotException("OOPS!!! The event command must include both '/from' and '/to' with valid times.");
+            throw new LeChatBotException(
+                    "OOPS!!! The event command must include both '/from' and '/to' with valid times.");
         }
         String[] timeParts = parts[1].split(" /to ", 2);
         return new EventCommand(new Event(parts[0], timeParts[0], timeParts[1]));

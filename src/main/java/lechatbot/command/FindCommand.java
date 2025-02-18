@@ -2,8 +2,8 @@ package lechatbot.command;
 
 import lechatbot.LeChatBotException;
 import lechatbot.Storage;
-import lechatbot.ui.Ui;
 import lechatbot.task.TaskList;
+import lechatbot.ui.Ui;
 
 /**
  * Represents a command to find tasks containing a specific keyword.

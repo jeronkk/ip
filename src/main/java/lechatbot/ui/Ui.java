@@ -1,7 +1,8 @@
 package lechatbot.ui;
 
-import lechatbot.task.TaskList;
 import java.util.Scanner;
+
+import lechatbot.task.TaskList;
 
 /**
  * Handles user interaction and console output.

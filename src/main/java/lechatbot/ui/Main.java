@@ -1,6 +1,7 @@
 package lechatbot.ui;
 
 import java.io.IOException;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -17,7 +18,7 @@ public class Main extends Application {
     private LeChatBot leChatBot = new LeChatBot("data/LeChatBot.txt");
 
     @Override
-    public void start(Stage stage) throws LeChatBotException{
+    public void start(Stage stage) throws LeChatBotException {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/view/MainWindow.fxml"));
             AnchorPane ap = fxmlLoader.load();
