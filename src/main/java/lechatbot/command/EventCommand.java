@@ -3,6 +3,7 @@ package lechatbot.command;
 import lechatbot.*;
 import lechatbot.task.Event;
 import lechatbot.task.TaskList;
+import lechatbot.ui.Ui;
 
 import java.io.IOException;
 
@@ -10,15 +11,14 @@ import java.io.IOException;
  * Represents a command to add an event task to the task list.
  */
 public class EventCommand extends Command {
-    private final Event event;
 
     /**
-     * Constructs an EventCommand with the specified event.
+     * Constructs an {@code EventCommand} with the specified event task.
      *
      * @param event The event task to be added.
      */
     public EventCommand(Event event) {
-        this.event = event;
+        super(event); // Passes the event task to the parent Command class
     }
 
     /**
@@ -28,15 +28,18 @@ public class EventCommand extends Command {
      * @param tasks   The task list where the event will be added.
      * @param ui      The UI handler for displaying messages.
      * @param storage The storage handler for saving tasks.
+     * @return A response message confirming the added event task.
      * @throws LeChatBotException If an error occurs while saving tasks.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws LeChatBotException {
-        tasks.add(event);
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws LeChatBotException {
+        this.addTask(tasks);
+        String response = "Got it. I've added this task:\n"
+                + "  " + task + "\n"
+                + "Now you have " + tasks.size() + " task" + (tasks.size() > 1 ? "s" : "") + " in the list.";
+
         ui.showLine();
-        System.out.println("Got it. I've added this task:");
-        System.out.println("  " + event);
-        System.out.println("Now you have " + tasks.size() + " task" + (tasks.size() > 1 ? "s" : "") + " in the list.");
+        System.out.println(response);
         ui.showLine();
 
         try {
@@ -44,13 +47,15 @@ public class EventCommand extends Command {
         } catch (IOException e) {
             throw new LeChatBotException("OOPS!!! An error occurred while saving tasks.");
         }
+
+        return response;
     }
 
     /**
-     * Creates an EventCommand from user input.
+     * Creates an {@code EventCommand} from user input.
      *
      * @param taskDetails The raw input string containing event details.
-     * @return A new EventCommand object.
+     * @return A new {@code EventCommand} object with parsed event details.
      * @throws LeChatBotException If the input format is incorrect.
      */
     public static EventCommand createFromUserInput(String taskDetails) throws LeChatBotException {
@@ -60,5 +65,15 @@ public class EventCommand extends Command {
         }
         String[] timeParts = parts[1].split(" /to ", 2);
         return new EventCommand(new Event(parts[0], timeParts[0], timeParts[1]));
+    }
+
+    /**
+     * Returns a string representation of the {@code EventCommand}.
+     *
+     * @return The string "EventCommand".
+     */
+    @Override
+    public String toString() {
+        return "EventCommand";
     }
 }
