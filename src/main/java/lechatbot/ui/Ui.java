@@ -1,4 +1,4 @@
-package lechatbot;
+package lechatbot.ui;
 
 import lechatbot.task.TaskList;
 import java.util.Scanner;
@@ -84,11 +84,15 @@ public class Ui {
 
     /**
      * Displays the exit message when the bot is terminated.
+     *
+     * @return A formatted exit message.
      */
-    public void showExitMessage() {
+    public String showExitMessage() {
+        String response = "Bye. Hope to see you again soon!";
         showLine();
-        System.out.println("Bye. Hope to see you again soon!");
+        System.out.println(response);
         showLine();
+        return response;
     }
 
     /**
@@ -108,22 +112,29 @@ public class Ui {
     }
 
     /**
-     * Displays the current list of tasks.
+     * Generates a formatted string representation of all tasks in the task list.
      *
-     * @param tasks The {@link TaskList} containing tasks to be displayed.
+     * @param tasks The task list whose tasks will be displayed.
+     * @return A formatted string representation of the task list.
      */
-    public void showTaskList(TaskList tasks) {
-        showLine();
+    public String showTaskList(TaskList tasks) {
+        StringBuilder response = new StringBuilder();
+        response.append(LINE).append("\n");
+
         if (tasks.isEmpty()) {
-            System.out.println("No tasks added yet.");
+            response.append("No tasks added yet.");
         } else {
-            System.out.println("Here are the tasks in your list:");
+            response.append("Here are the tasks in your list:\n");
             for (int i = 0; i < tasks.size(); i++) {
-                System.out.println((i + 1) + ". " + tasks.get(i));
+                response.append(i + 1).append(". ").append(tasks.get(i)).append("\n");
             }
         }
-        showLine();
+
+        response.append(LINE);
+        System.out.println(response);
+        return response.toString();
     }
+
 
     /**
      * Reads and returns the next user command input.
@@ -134,12 +145,23 @@ public class Ui {
         return scanner.nextLine().trim();
     }
 
-    public void showMatchingTasks(TaskList matchingTasks) {
-        System.out.println("Here are the matching tasks in your list:");
-        System.out.println("________________________________________");
+    /**
+     * Generates a formatted string displaying tasks that match a given keyword.
+     *
+     * @param matchingTasks The list of tasks that match the search criteria.
+     * @return A formatted string listing the matching tasks, or a message if none are found.
+     */
+    public String showMatchingTasks(TaskList matchingTasks) {
+        StringBuilder response = new StringBuilder();
+        response.append("Here are the matching tasks in your list:\n")
+                .append(LINE).append("\n");
+
         for (int i = 0; i < matchingTasks.getSize(); i++) {
-            System.out.println((i + 1) + ". " + matchingTasks.getTask(i));
+            response.append((i + 1)).append(". ").append(matchingTasks.getTask(i)).append("\n");
         }
-        System.out.println("________________________________________");
+
+        response.append(LINE);
+        return response.toString();
     }
+
 }
