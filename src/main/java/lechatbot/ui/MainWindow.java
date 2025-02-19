@@ -34,13 +34,21 @@ public class MainWindow extends AnchorPane {
             this.getClass().getResourceAsStream("/images/lebron.jpeg"))
     );
 
+    private void displayStartMessage() {
+        dialogContainer.getChildren().add(
+                DialogBox.getLeChatBotDialog("Hello! I'm LeChatBot.\nWhat can I do for you?", leChatBotImage)
+        );
+    }
+
+    /** Initializes the main window of the chatbot application. */
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
+        displayStartMessage();
     }
 
-    /** Injects the Duke instance */
-    public void setDuke(LeChatBot d) {
+    /** Injects the Duke instance. */
+    public void setLeChatBot(LeChatBot d) {
         leChatBot = d;
     }
 
@@ -52,10 +60,9 @@ public class MainWindow extends AnchorPane {
     private void handleUserInput() {
         String input = userInput.getText();
         String response = leChatBot.getResponse(input);
-        String commandType = leChatBot.getCommandType();
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, userImage),
-                DialogBox.getLeChatBotDialog(response, leChatBotImage, commandType)
+                DialogBox.getLeChatBotDialog(response, leChatBotImage)
         );
         userInput.clear();
     }
