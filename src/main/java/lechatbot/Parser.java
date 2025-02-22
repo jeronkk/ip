@@ -42,12 +42,14 @@ public class Parser {
 
         switch (commandWord) {
         case "todo":
+            assert taskDetails != null : ERROR_EMPTY_TODO;
             if (taskDetails.isEmpty()) {
                 throw new LeChatBotException(ERROR_EMPTY_TODO);
             }
             return new AddCommand(new Todo(taskDetails));
 
         case "deadline":
+            assert taskDetails != null : ERROR_EMPTY_DEADLINE;
             if (taskDetails.isEmpty()) {
                 throw new LeChatBotException(ERROR_EMPTY_DEADLINE);
             }
@@ -57,6 +59,7 @@ public class Parser {
             return DeadlineCommand.createFromUserInput(taskDetails);
 
         case "event":
+            assert taskDetails != null : ERROR_EMPTY_EVENT;
             if (taskDetails.isEmpty()) {
                 throw new LeChatBotException(ERROR_EMPTY_EVENT);
             }
@@ -71,6 +74,7 @@ public class Parser {
         case "mark":
         case "unmark":
         case "delete":
+            assert taskDetails != null : ERROR_MISSING_TASK_NUMBER;
             if (taskDetails.isEmpty()) {
                 throw new LeChatBotException(ERROR_MISSING_TASK_NUMBER);
             }
