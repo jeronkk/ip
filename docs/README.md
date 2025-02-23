@@ -1,5 +1,7 @@
 # LeChatBot User Guide
 
+![LeChatBot Interface](/docs/Ui.png)
+
 ## Overview
 LeChatBot is a command-line based chatbot that helps users manage tasks efficiently. It supports different types of tasks, including todos, deadlines, and events, and provides various commands for interacting with your task list.
 
