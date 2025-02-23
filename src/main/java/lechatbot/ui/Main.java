@@ -11,11 +11,11 @@ import lechatbot.LeChatBot;
 import lechatbot.LeChatBotException;
 
 /**
- * A GUI for Duke using FXML.
+ * A GUI for LeChatBot using FXML.
  */
 public class Main extends Application {
 
-    private LeChatBot leChatBot = new LeChatBot("data/LeChatBot.txt");
+    private final LeChatBot leChatBot = new LeChatBot("data/LeChatBot.txt");
 
     @Override
     public void start(Stage stage) throws LeChatBotException {
@@ -24,7 +24,7 @@ public class Main extends Application {
             AnchorPane ap = fxmlLoader.load();
             Scene scene = new Scene(ap);
             stage.setScene(scene);
-            fxmlLoader.<MainWindow>getController().setDuke(leChatBot);
+            fxmlLoader.<MainWindow>getController().setLeChatBot(leChatBot);
             stage.show();
         } catch (IOException e) {
             throw new LeChatBotException("Failed to load MainWindow.fxml.");

@@ -39,13 +39,13 @@ public class MainWindow extends AnchorPane {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
     }
 
-    /** Injects the Duke instance */
-    public void setDuke(LeChatBot d) {
+    /** Injects the LeChatBot instance */
+    public void setLeChatBot(LeChatBot d) {
         leChatBot = d;
     }
 
     /**
-     * Creates two dialog boxes, one echoing user input and the other containing Duke's reply and then appends them to
+     * Creates two dialog boxes, one echoing user input and the other containing LeChatBot's reply and then appends them to
      * the dialog container. Clears the user input after processing.
      */
     @FXML
