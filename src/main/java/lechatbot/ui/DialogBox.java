@@ -49,39 +49,13 @@ public class DialogBox extends HBox {
         dialog.getStyleClass().add("reply-label");
     }
 
-    private void changeDialogStyle(String commandType) {
-        if (commandType == null) {
-            return;
-        }
-        switch(commandType) {
-        case "AddCommand", "DeadlineEvent", "EventCommand":
-            dialog.getStyleClass().add("add-label");
-            break;
-        case "MarkCommand", "UnmarkCommand":
-            dialog.getStyleClass().add("mark-label");
-            break;
-        case "ListCommand", "FindCommand":
-            dialog.getStyleClass().add("list-label");
-            break;
-        case "DeleteCommand":
-            dialog.getStyleClass().add("delete-label");
-            break;
-        case "ExitCommand":
-            dialog.getStyleClass().add("exit-label");
-            break;
-        default:
-            // Do nothing
-        }
-    }
-
     public static DialogBox getUserDialog(String text, Image img) {
         return new DialogBox(text, img);
     }
 
-    public static DialogBox getLeChatBotDialog(String text, Image img, String commandType) {
+    public static DialogBox getLeChatBotDialog(String text, Image img) {
         var db = new DialogBox(text, img);
         db.flip();
-        db.changeDialogStyle(commandType);
         return db;
     }
 }

@@ -35,8 +35,10 @@ dos2unix ACTUAL.TXT
 diff -w ACTUAL.TXT EXPECTED.TXT
 if [ $? -eq 0 ]; then
     echo "Test result: PASSED"
+    > ../data/LeChatBot.txt
     exit 0
 else
     echo "Test result: FAILED"
+    > ../data/LeChatBot.txt
     exit 1
 fi
