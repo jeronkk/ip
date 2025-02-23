@@ -43,6 +43,6 @@ public class ParserTest {
         });
 
         assertEquals(
-                "OOPS!!! Invalid command! Try: todo, deadline, event, list, mark, unmark, bye", exception.getMessage());
+                "OOPS!!! Invalid command! Enter \"help\" for list of commands", exception.getMessage());
     }
 }

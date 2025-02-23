@@ -7,6 +7,7 @@ import lechatbot.command.DeleteCommand;
 import lechatbot.command.EventCommand;
 import lechatbot.command.ExitCommand;
 import lechatbot.command.FindCommand;
+import lechatbot.command.HelpCommand;
 import lechatbot.command.ListCommand;
 import lechatbot.command.MarkCommand;
 import lechatbot.command.UnmarkCommand;
@@ -26,7 +27,7 @@ public class Parser {
             "OOPS!!! The event command must include both '/from' and '/to' with valid times.";
     private static final String ERROR_MISSING_TASK_NUMBER = "OOPS!!! You must specify a task number.";
     private static final String ERROR_INVALID_COMMAND =
-            "OOPS!!! Invalid command! Try: todo, deadline, event, list, mark, unmark, delete, bye.";
+            "OOPS!!! Invalid command! Enter \"help\" for list of commands";
 
     /**
      * Parses user input and returns the corresponding {@code Command}.
@@ -88,6 +89,9 @@ public class Parser {
 
         case "bye":
             return new ExitCommand();
+
+        case "help":
+            return new HelpCommand();
 
         default:
             throw new LeChatBotException(ERROR_INVALID_COMMAND);

@@ -133,9 +133,35 @@ public class Ui {
 
         response.append(LINE);
         System.out.println(response);
-        return response.toString();
+        int startIndex = LINE.length() + 1;
+        int endIndex = response.length() - LINE.length();
+        return response.substring(startIndex, endIndex).trim();
     }
 
+    /**
+     * Displays the help message with a list of available commands in LeChatBot.
+     *
+     * <p>
+     * The method prints the help message wrapped between horizontal lines for
+     * a structured console output. However, it returns only the contents of
+     * the help message without the enclosing lines.
+     * </p>
+     *
+     * @return A formatted string containing the help message without the horizontal lines.
+     */
+    public String showHelpMessage() {
+        String helpMessage =
+                "Here are the available commands in LeChatBot:\n"
+                        + "1. add <task> - Adds a new task.\n"
+                        + "2. list - Displays all tasks.\n"
+                        + "3. done <task number> - Marks a task as done.\n"
+                        + "4. delete <task number> - Deletes a task.\n"
+                        + "5. find <keyword> - Searches for tasks containing the keyword.\n"
+                        + "6. help - Displays this help message.\n"
+                        + "7. exit - Exits the application.\n";
+        System.out.println(LINE + "\n" + helpMessage + LINE);
+        return helpMessage.trim();
+    }
 
     /**
      * Reads and returns the next user command input.
