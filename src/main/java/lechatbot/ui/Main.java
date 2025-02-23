@@ -24,7 +24,9 @@ public class Main extends Application {
             AnchorPane ap = fxmlLoader.load();
             Scene scene = new Scene(ap);
             stage.setScene(scene);
-            fxmlLoader.<MainWindow>getController().setDuke(leChatBot);
+            stage.setMinWidth(400);
+            stage.setMinHeight(650);
+            fxmlLoader.<MainWindow>getController().setLeChatBot(leChatBot);
             stage.show();
         } catch (IOException e) {
             throw new LeChatBotException("Failed to load MainWindow.fxml.");

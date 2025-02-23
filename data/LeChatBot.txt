@@ -1,4 +1,0 @@
-E | 0 | team meeting | 3/2/2025 1400 | 3/2/2025 1600
-T | 0 | watch Bronny in the G-League
-D | 0 | submit scouting report | 7/2/2025 2359
-E | 0 | team meeting | 3/2/2025 1500 | 3/2/2025 1700
