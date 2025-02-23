@@ -152,13 +152,17 @@ public class Ui {
     public String showHelpMessage() {
         String helpMessage =
                 "Here are the available commands in LeChatBot:\n"
-                        + "1. add <task> - Adds a new task.\n"
-                        + "2. list - Displays all tasks.\n"
-                        + "3. done <task number> - Marks a task as done.\n"
-                        + "4. delete <task number> - Deletes a task.\n"
-                        + "5. find <keyword> - Searches for tasks containing the keyword.\n"
-                        + "6. help - Displays this help message.\n"
-                        + "7. exit - Exits the application.\n";
+                        + "1. todo <task> - Adds a new todo.\n"
+                        + "2. deadline <task> /by <date> - Adds a deadline task.\n"
+                        + "   Example: deadline trade Anthony Davis /by 06/02/2025\n"
+                        + "3. event <task> /from <start date/time> /to <end date/time> - Adds an event task.\n"
+                        + "   Example: event team meeting /from 03/02/2025 1400 /to 03/02/2025 1600\n"
+                        + "4. list - Displays all tasks.\n"
+                        + "5. mark <task number> - Marks task as done.\n"
+                        + "6. unmark <task number> - Marks task as not done.\n"
+                        + "7. find <keyword> - Searches for tasks containing the keyword.\n"
+                        + "8. delete <task number> - Deletes a task.\n"
+                        + "9. exit - Exits the application.\n";
         System.out.println(LINE + "\n" + helpMessage + LINE);
         return helpMessage.trim();
     }
